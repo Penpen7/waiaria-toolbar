@@ -1,3 +1,4 @@
+import React from "react";
 function App() {
   return (
     <>
@@ -98,7 +99,7 @@ function App() {
             className="item menu-button"
             tabIndex={-1}
             aria-label="Font: Sans-serif"
-            style="text-align: left; width: 140px; font-family: sans-serif">
+            style={{textAlign: "left", width: "140px", fontFamily: "sans-serif"} as React.CSSProperties}>
             SANS-SERIF
             <span></span>
           </button>
@@ -107,27 +108,27 @@ function App() {
             aria-label="Font Family">
             <li role="menuitemradio"
               aria-checked="true"
-              style="font-family: sans-serif">
+              style={{fontFamily: "sans-serif"} as React.CSSProperties}>
               Sans-serif
             </li>
             <li role="menuitemradio"
               aria-checked="false"
-              style="font-family: serif">
+              style={{fontFamily: "selif"} as React.CSSProperties}>
               Serif
             </li>
             <li role="menuitemradio"
               aria-checked="false"
-              style="font-family: monospace">
+              style={{fontFamily: "monospace"} as React.CSSProperties}>
               Monospace
             </li>
             <li role="menuitemradio"
               aria-checked="false"
-              style="font-family: fantasy">
+              style={{fontFamily: "fantasy"} as React.CSSProperties}>
               Fantasy
             </li>
             <li role="menuitemradio"
               aria-checked="false"
-              style="font-family: cursive">
+              style={{fontFamily: "cursive"} as React.CSSProperties}>
               Cursive
             </li>
           </ul>
@@ -187,7 +188,7 @@ function App() {
       <textarea id="textarea1"
         rows={20}
         cols={80}
-        style="font-family: sans-serif">
+        style={{fontFamily: "sans-serif"} as React.CSSProperties}>
         Abraham Lincoln's Gettysburg Address
 
         Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
