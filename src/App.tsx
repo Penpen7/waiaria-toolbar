@@ -1,4 +1,5 @@
 import React from "react";
+import FontMenu from "./components/FontMenu";
 function App() {
   return (
     <>
@@ -92,47 +93,7 @@ function App() {
             Cut
           </button>
         </div>
-        <div className="menu-popup group">
-          <button type="button"
-            aria-haspopup="true"
-            aria-controls="menu1"
-            className="item menu-button"
-            tabIndex={-1}
-            aria-label="Font: Sans-serif"
-            style={{textAlign: "left", width: "140px", fontFamily: "sans-serif"} as React.CSSProperties}>
-            SANS-SERIF
-            <span></span>
-          </button>
-          <ul role="menu"
-            id="menu1"
-            aria-label="Font Family">
-            <li role="menuitemradio"
-              aria-checked="true"
-              style={{fontFamily: "sans-serif"} as React.CSSProperties}>
-              Sans-serif
-            </li>
-            <li role="menuitemradio"
-              aria-checked="false"
-              style={{fontFamily: "selif"} as React.CSSProperties}>
-              Serif
-            </li>
-            <li role="menuitemradio"
-              aria-checked="false"
-              style={{fontFamily: "monospace"} as React.CSSProperties}>
-              Monospace
-            </li>
-            <li role="menuitemradio"
-              aria-checked="false"
-              style={{fontFamily: "fantasy"} as React.CSSProperties}>
-              Fantasy
-            </li>
-            <li role="menuitemradio"
-              aria-checked="false"
-              style={{fontFamily: "cursive"} as React.CSSProperties}>
-              Cursive
-            </li>
-          </ul>
-        </div>
+        <FontMenu />
         <div className="group">
           <div className="item spinbutton"
             role="spinbutton"
