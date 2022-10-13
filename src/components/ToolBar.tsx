@@ -52,6 +52,9 @@ export default function ToolBar() {
     tabIndex={0}
     onKeyDown={(e) => {
       switch (e.keyCode) {
+        case 35:
+          setLastFocusedButtonIndex(buttons.length - 1)
+          break
         case 36:
           setLastFocusedButtonIndex(0)
           break
