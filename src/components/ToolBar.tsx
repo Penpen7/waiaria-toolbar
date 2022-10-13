@@ -1,6 +1,7 @@
 import {useRef, useState, createRef, useEffect} from "react"
 export default function ToolBar() {
   const [lastFocusedButtonIndex, setLastFocusedButtonIndex] = useState(0)
+  const [isButtonFocused, setIsButtonFocused] = useState(false)
   const buttons = [
     {
       name: "Bold",
@@ -29,6 +30,16 @@ export default function ToolBar() {
     }
   ]
   const refs = useRef(buttons.map(() => createRef<HTMLButtonElement>()))
+  refs.current.map((v) => {
+    if (v.current) {
+      v.current.onblur = () => {
+        setIsButtonFocused(false)
+      }
+      v.current.onfocus = () => {
+        setIsButtonFocused(true)
+      }
+    }
+  })
 
   useEffect(() => {
     refs.current[lastFocusedButtonIndex].current?.focus()
@@ -56,7 +67,7 @@ export default function ToolBar() {
       {
         buttons.map((v, i) => {
           return <>
-            <button type="button" value={v.name} onClick={() => {setLastFocusedButtonIndex(i); v.onClick()}} tabIndex={lastFocusedButtonIndex === i ? 0 : -1} ref={refs.current[i]}><span className="material-icons">{v.icon}</span></button>
+            <button type="button" className="item popup" value={v.name} onClick={() => {setLastFocusedButtonIndex(i); v.onClick()}} tabIndex={lastFocusedButtonIndex === i ? 0 : -1} ref={refs.current[i]}><span className="material-icons">{v.icon}</span>{i === lastFocusedButtonIndex && isButtonFocused && <span className="popup-label show">{v.name}</span>}</button>
           </>
         })
       }
