@@ -1,28 +1,30 @@
-import FontMenu from "./FontMenu"
-import FontSize from "./FontSize"
-import {useRef, RefObject, useState, createRef, useEffect} from "react"
+import {useRef, useState, createRef, useEffect} from "react"
 export default function ToolBar() {
   const [lastFocusedButtonIndex, setLastFocusedButtonIndex] = useState(0)
-  const [IsToolBarFocused, setIsToolBarFocused] = useState(false)
   const buttons = [
     {
       name: "Bold",
+      icon: "format_bold",
       onClick: () => {document.execCommand("bold")}
     },
     {
       name: "change color",
-      onClick: () => {document.execCommand("bold")}
+      icon: "format_color_text",
+      onClick: () => {document.execCommand('foreColor', false, '#e51c23')}
     },
     {
       name: "Copy",
+      icon: "content_copy",
       onClick: () => {document.execCommand("copy")}
     },
     {
       name: "Paste",
+      icon: "content_paste",
       onClick: () => {document.execCommand("paste")}
     },
     {
       name: "Cut",
+      icon: "content_cut",
       onClick: () => {document.execCommand("cut")}
     }
   ]
@@ -30,13 +32,14 @@ export default function ToolBar() {
 
   useEffect(() => {
     refs.current[lastFocusedButtonIndex].current?.focus()
-  }, [lastFocusedButtonIndex, IsToolBarFocused])
+  }, [lastFocusedButtonIndex])
 
   return <div className="format"
     role="toolbar"
     aria-label="Text Formatting"
     aria-controls="textarea1"
-    tabIndex={0} onFocus={() => {refs.current[lastFocusedButtonIndex].current?.focus()}} onKeyDown={(e) => {
+    tabIndex={0}
+    onKeyDown={(e) => {
       switch (e.keyCode) {
         case 36:
           setLastFocusedButtonIndex(0)
@@ -49,11 +52,11 @@ export default function ToolBar() {
       }
     }}>
 
-    <div className="group characteristics">
+    <div className="group characteristics" >
       {
         buttons.map((v, i) => {
           return <>
-            <button type="button" value={v.name} onClick={() => {v.onClick()}} tabIndex={-1} ref={refs.current[i]}>{v.name}</button>
+            <button type="button" value={v.name} onClick={() => {setLastFocusedButtonIndex(i); v.onClick()}} tabIndex={lastFocusedButtonIndex === i ? 0 : -1} ref={refs.current[i]}><span className="material-icons">{v.icon}</span></button>
           </>
         })
       }
